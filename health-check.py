@@ -37,6 +37,7 @@ except yaml.YAMLError as e:
 #     key: url, if the URL is the same it shouldn't have to be pinged multiple times.
 #     value: list, where the first element is the number of successful checks, and the second is unsuccessful checks.
 # TODO rolling window
+# TODO KeyError: 'url'
 success_count = {}
 for item in data:
     success_count[item["url"]] = [0,0]
@@ -56,7 +57,7 @@ while True:
         if "url" in item:
             url = item["url"]
         else:
-            break
+            continue
 
         headers = None
         body = None
