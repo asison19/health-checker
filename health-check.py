@@ -36,11 +36,13 @@ except yaml.YAMLError as e:
 # Make the success count a hashmap where,
 #     key: url, if the URL is the same it shouldn't have to be pinged multiple times.
 #     value: list, where the first element is the number of successful checks, and the second is unsuccessful checks.
+# TODO rolling window
 success_count = {}
 for item in data:
     success_count[item["url"]] = [0,0]
 
 # Health endpoint test Cycling
+# TODO breakdown into functions.
 while True:
     output_strings = []
     for item in data:
